@@ -1,0 +1,86 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//================================================================================================//
+//
+//  WRAP COMPONENT
+//
+//================================================================================================//
+
+// VARS
+
+// ELEMENTS
+
+.wrap {
+  width: 100%;
+  padding: 80px 20px;
+  position: relative;
+
+  @include media-min(sm) {
+    padding: 110px 40px;
+  }
+
+  @include media-min(lg) {
+    padding: 140px 0;
+  }
+}
+
+.wrap--footer {
+  @include font-size-lg();
+  padding: 40px 20px;
+  text-align: center;
+  color: color(seed-grey);
+
+  @include media-min(sm) {
+    padding: 40px;
+  }
+}
+
+.wrap__body {
+  max-width: #{$global-max-page-width}px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wrap--darker {
+  background-color: color(seed-grey-lightest);
+}
+
+.wrap--standout {
+  background-color: color(seed-grey);
+  color: color(text-lightest);
+}
+
+.wrap__anchor {
+  position: relative;
+  top: -125px;
+  display: block;
+  pointer-events: none;
+}
+
+.wrap--offset {
+  margin-top: -90px;
+  padding-top: 170px;
+
+  @include media-min(sm) {
+    padding-top: 195px;
+  }
+
+  @include media-min(sm) {
+    padding-top: 225px;
+  }
+}
+
+// VARIANTS

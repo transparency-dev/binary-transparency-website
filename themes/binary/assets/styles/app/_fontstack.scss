@@ -1,0 +1,167 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//============================================================================//
+//
+//  FONT STACK SCSS
+//
+//============================================================================//
+
+// @font-face {
+//   @include create-font('Google Sans', google-sans, 300, normal);
+// }
+
+@mixin fs-menu-link() {
+  @include font-size($font-size-md);
+
+  @include media-min(sm) {
+    @include font-size($font-size-lg);
+  }
+
+  @include media-min(md) {
+    @include font-size($font-size-md);
+  }
+}
+
+@mixin fs-logo() {
+  @include font-size(18);
+
+  @include media-min(xs) {
+    @include font-size(20);
+  }
+
+  @include media-min(sm) {
+    @include font-size(22);
+  }
+}
+
+@mixin fs-overview-title {
+  @include font-size-xxl();
+  font-weight: $font-weight-regular;
+}
+
+@mixin fs-section-title {
+  @include font-size-xxl();
+}
+
+@mixin fs-section-subtitle {
+  @include font-size-md();
+  font-weight: $font-weight-medium;
+}
+
+@mixin fs-section-intro {
+  @include font-size(14);
+
+  @include media-min(sm) {
+    @include font-size(16);
+  }
+}
+
+@mixin fs-section-intro-large {
+  @include font-size(16);
+
+  @include media-min(sm) {
+    @include font-size(18);
+  }
+}
+
+@mixin fs-section-content {
+  @include font-size(16);
+
+  @include media-min(sm) {
+    @include font-size(18);
+  }
+}
+
+@mixin fs-section-content-small {
+  @include font-size(12);
+
+  @include media-min(sm) {
+    @include font-size(14);
+  }
+}
+@mixin fs-section-content-backed {
+  @include font-size(14);
+
+  @include media-min(sm) {
+    @include font-size(16);
+  }
+}
+
+@mixin fs-section-content-h2 {
+  @include font-size-xxl();
+}
+
+@mixin fs-section-content-h3 {
+  @include font-size-xl();
+}
+
+@mixin fs-section-content-h4 {
+  @include font-size-lg();
+}
+
+@mixin fs-card-title {
+  @include font-size(18);
+  font-weight: $font-weight-regular;
+
+  @include media-min(xs) {
+    @include font-size(19);
+  }
+
+  @include media-min(sm) {
+    @include font-size(20);
+  }
+
+  @include media-min(md) {
+    @include font-size(20);
+  }
+}
+
+@mixin fs-card-intro-title {
+  @include font-size(20);
+  font-weight: $font-weight-regular;
+
+  @include media-min(xs) {
+    @include font-size(22);
+  }
+
+  @include media-min(sm) {
+    @include font-size(24);
+  }
+
+  @include media-min(md) {
+    @include font-size(26);
+  }
+}
+
+@mixin fs-card-content {
+  @include font-size($font-size-md);
+}
+
+@mixin fs-footer-menu {
+  @include font-size(12);
+
+  @include media-min(sm) {
+    @include font-size(14);
+  }
+}
+
+@mixin fs-content-area {
+  @include font-size(14);
+
+  @include media-min(sm) {
+    @include font-size(16);
+  }
+}

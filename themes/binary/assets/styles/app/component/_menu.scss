@@ -1,0 +1,231 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//================================================================================================//
+//
+//  MENU COMPONENT
+//
+//================================================================================================//
+
+// VARS
+
+// ELEMENTS
+
+.menu {
+  @include animate(opacity);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  justify-content: flex-end;
+  height: 99px;
+
+  @include media-max(md) {
+    @include animate(transform opacity);
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    background-color: color(seed-white);
+    z-index: -5;
+    padding: 5px 25px 25px;
+    transform: translateY(-100%);
+    opacity: 0;
+    height: auto;
+
+    &.menu-open {
+      transform: translateY(0);
+      opacity: 1;
+      box-shadow: 0 10px 10px 0 color(seed-black, null, .2);
+    }
+
+    .no-js .header:hover & {
+      transform: translateY(0);
+      opacity: 1;
+      box-shadow: 0 10px 10px 0 color(seed-black, null, .2);
+    }
+  }
+}
+
+.menu__item {
+  .has-children & {
+    display: none;
+  }
+}
+
+.menu--main {
+  flex-wrap: none;
+}
+
+.menu-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @include media-min(md) {
+    width: auto;
+    flex-direction: row;
+    padding-right: 40px;
+  }
+}
+
+.menu-list__item {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+
+  @include media-min(md) {
+    width: auto;
+    margin: 0 0 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.menu-link {
+  @include fs-menu-link;
+  display: inline-block;
+  white-space: nowrap;
+  color: color(text-dark);
+  padding: 5px 0;
+
+  @include media-min(md) {
+    padding: 0;
+  }
+
+  &:link,
+  &:visited {
+    color: color(text-dark);
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: color(seed-blue);
+    outline: 0;
+  }
+
+  &:focus {
+    outline: 2px solid $anchor-focus-border;
+    color: color(seed-blue);
+  }
+
+  .focus-disabled &:focus,
+  &:active {
+    color: color(seed-blue);
+    background-color: transparent;
+    outline: none;
+  }
+}
+
+.menu-link--footer {
+  @include fs-footer-menu;
+}
+
+.menu-button {
+  width: 44px;
+  height: 44px;
+  position: absolute;
+
+  @include media-min(md) {
+    pointer-events: none;
+  }
+
+  &::before,
+  &::after {
+    @include animate(transform width background-color);
+    position: absolute;
+    content: '';
+    width: 25px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: color(text-dark);
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+  }
+
+  &::before {
+    width: 20px;
+    transform: translate(-12.5px, -10px) rotate(0);
+  }
+
+  &::after {
+    width: 15px;
+    transform: translate(-12.5px, 7px) rotate(0);
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      background-color: color(seed-blue);
+    }
+  }
+
+  &.is-active {
+    &::before {
+      width: 25px;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &::after {
+      width: 25px;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+
+  .no-js {
+    pointer-events: none;
+  }
+
+  .no-js .header:hover & {
+    &::before,
+    &::after {
+      background-color: color(seed-blue);
+    }
+  }
+}
+
+.menu-button__inner {
+  @include animate(opacity background-color);
+  pointer-events: none;
+  width: 25px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: color(text-dark);
+  opacity: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  .is-active > & {
+    opacity: 0;
+  }
+
+  .menu-button:hover & {
+    background-color: color(seed-blue);
+  }
+
+  .no-js .header:hover & {
+    background-color: color(seed-blue);
+  }
+}

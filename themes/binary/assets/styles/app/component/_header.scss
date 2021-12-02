@@ -1,0 +1,145 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//================================================================================================//
+//
+//  HEADER COMPONENT
+//
+//================================================================================================//
+
+// VARS
+
+// ELEMENTS
+
+.header {
+  @include animate(transform box-shadow);
+  background-color: color(seed-white);
+  box-shadow: 0 0 10px color(seed-black, null, 0);
+  left: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  transform: translateY(-100%);
+  width: 100%;
+  z-index: 10;
+
+  @include media-min(md) {
+    padding: 0;
+  }
+
+  &.is-active {
+    transform: translateY(0%);
+  }
+
+  &.has-shadow {
+    box-shadow: 0 0 10px color(seed-black, null, .2);
+  }
+
+  .lock-header-active & {
+    transform: translateY(0%);
+    box-shadow: 0 0 10px color(seed-black, null, .2);
+  }
+}
+
+.header__inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  background-color: color(seed-white);
+
+  @include media-min(sm) {
+
+  }
+}
+
+.header__logo {
+  @include fs-logo();
+  color: color(text-darker);
+  text-align: center;
+  flex: 0 0 auto;
+  display: inline-block;
+  max-width: 200px;
+  max-height: 49px;
+  margin: 15px auto;
+  transform: translateX(7px);
+
+  svg {
+    width: 100% !important; // stylelint-disable-line declaration-no-important
+    height: 100% !important; // stylelint-disable-line declaration-no-important
+    transform: none !important; // stylelint-disable-line declaration-no-important
+
+    * {
+      shape-rendering: geometricPrecision !important; // stylelint-disable-line declaration-no-important
+    }
+  }
+
+  @include media-min(370) {
+    max-width: 260px;
+    max-height: 59px;
+    margin: 10px auto;
+    transform: translateX(9px);
+  }
+
+  @include media-min(xs) {
+    max-width: 280px;
+    max-height: 81px;
+    margin: 0 auto;
+    transform: translate(10px, -1px);
+  }
+
+  @include media-min(md) {
+    text-align: left;
+    max-width: 320px;
+    max-height: 69px;
+    margin: 15px 0 15px 35px;
+  }
+
+  &:link,
+  &:visited {
+    color: color(text-darkest);
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: color(seed-blue);
+    outline: 0;
+  }
+
+  &:focus {
+    outline: 2px solid $anchor-focus-border;
+    color: color(seed-blue);
+  }
+
+  .focus-disabled &:focus,
+  &:active {
+    color: color(seed-blue);
+    background-color: transparent;
+    outline: none;
+  }
+}
+
+.hedder__toggle {
+  @include animate(opacity);
+  opacity: 1;
+  position: absolute;
+  top: 18px;
+  left: 15px;
+  z-index: 10;
+
+  @include media-min(md) {
+    opacity: 0;
+  }
+}

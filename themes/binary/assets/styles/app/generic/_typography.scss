@@ -1,0 +1,112 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//============================================================================//
+//
+//  GLOBAL GENERIC TYPOGRAPHY
+//  N.B: DON'T modify only fix issues and fold back into typography module
+//
+//============================================================================//
+
+// VARS
+
+$color-text-dark: color(text-dark) !default;
+$color-heading-dark: color(text-darkest) !default;
+$paragraph-break: #{floor(($font-size-base * $line-height) / 2)}px !default;
+
+// ELEMENTS
+
+body {
+  @include fs-content-area();
+  @include font-base();
+  color: $color-text-dark;
+  line-height: 1.8;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  @include media-min(sm) {
+    @include font-size-md();
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: $paragraph-break;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li {
+  padding: 0;
+  word-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $font-weight-regular;
+  color: $color-heading-dark;
+  line-height: 1.2;
+
+  small {
+    font-size: 80%;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+ul,
+ol {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+h1 {
+  @include font-size-xxl();
+
+  @include media-min(sm) {
+    @include font-size-xxxl();
+  }
+}
+
+h2 {
+  @include font-size-xl();
+}
+
+h3 {
+  @include font-size(24);
+}

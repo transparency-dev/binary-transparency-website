@@ -1,0 +1,239 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//================================================================================================//
+//
+//  CARD COMPONENT
+//
+//================================================================================================//
+
+// CONTAINER
+
+.card-grid {
+  @include media-min(md) {
+    columns: 2;
+    column-gap: 100px;
+  }
+
+  @include media-min(lg) {
+    column-gap: 200px;
+  }
+}
+
+// MODULE
+
+.card {
+  background-color: color(seed-white);
+  color: color(text-darkest);
+  width: 100%;
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: color(seed-grey);
+  padding: 10px;
+  break-inside: avoid;
+  max-width: 400px;
+  margin: 0 auto;
+
+  .card + & {
+    margin-top: 100px;
+
+    @include media-min(md) {
+      margin-top: 145px;
+    }
+  }
+}
+
+.card--intro {
+  position: relative;
+  border: none;
+  padding: 0;
+  max-width: 720px;
+
+  @include media-min(sm) {
+    width: 100%;
+  }
+
+  @include media-min(md) {
+    width: calc(100% + 50px);
+    max-width: calc(100% + 50px);
+    margin-right: -50px;
+  }
+
+  @include media-min(lg) {
+    width: calc(100% + 100px);
+    margin-right: -100px;
+    max-width: calc(100% + 100px);
+  }
+}
+
+.card--red {
+  border-color: color(card-red);
+
+  a {
+    @include animate(color background-color outline);
+    color: color(card-red);
+
+    &:link,
+    &:visited {
+      color: color(card-red);
+    }
+
+    &:hover {
+      color: color(card-red, 25);
+      outline: 0;
+    }
+
+    &:focus {
+      color: color(card-red, 25);
+    }
+
+    .focus-disabled &:focus,
+    &:active {
+      color: color(card-red, -25);
+    }
+  }
+}
+
+.card--green {
+  border-color: color(card-green);
+
+  a {
+    @include animate(color background-color outline);
+    color: color(card-green);
+
+    &:link,
+    &:visited {
+      color: color(card-green);
+    }
+
+    &:hover {
+      color: color(card-green, 25);
+      outline: 0;
+    }
+
+    &:focus {
+      color: color(card-green, 25);
+    }
+
+    .focus-disabled &:focus,
+    &:active {
+      color: color(card-green, -25);
+    }
+  }
+}
+
+.card--blue {
+  border-color: color(card-blue);
+
+  a {
+    @include animate(color background-color outline);
+    color: color(card-blue);
+
+    &:link,
+    &:visited {
+      color: color(card-blue);
+    }
+
+    &:hover {
+      color: color(card-blue, 25);
+      outline: 0;
+    }
+
+    &:focus {
+      color: color(card-blue, 25);
+    }
+
+    .focus-disabled &:focus,
+    &:active {
+      color: color(card-blue, -25);
+    }
+  }
+}
+
+.card--yellow {
+  border-color: color(card-yellow);
+
+  a {
+    @include animate(color background-color outline);
+    color: color(card-yellow);
+
+    &:link,
+    &:visited {
+      color: color(card-yellow);
+    }
+
+    &:hover {
+      color: color(card-yellow, 25);
+      outline: 0;
+    }
+
+    &:focus {
+      color: color(card-yellow, 25);
+    }
+
+    .focus-disabled &:focus,
+    &:active {
+      color: color(card-yellow, -25);
+    }
+  }
+}
+
+.card__inner {
+  padding: 30px;
+  background-color: color(seed-grey-lightest);
+  border-radius: 10px;
+
+  .card--red & {
+    background-color: color(card-red-light);
+  }
+
+  .card--blue & {
+    background-color: color(card-blue-light);
+  }
+
+  .card--green & {
+    background-color: color(card-green-light);
+  }
+
+  .card--yellow & {
+    background-color: color(card-yellow-light);
+  }
+}
+
+.card__title {
+  @include fs-card-title();
+
+  .card--intro & {
+    @include fs-card-intro-title();
+    font-weight: $font-weight-medium;
+    margin-bottom: 40px;
+  }
+}
+
+.card__content {
+  @include fs-card-content();
+  line-height: 1.8;
+  color: color(text-dark);
+
+  .card--intro & {
+    @include font-size($font-size-xl);
+    text-align: center;
+
+    @include media-min(md) {
+      text-align: left;
+    }
+  }
+}

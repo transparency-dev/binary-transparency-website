@@ -1,0 +1,60 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//================================================================================================//
+//
+//  FONTSIZE UTILITIES
+//  ImportantRules are OK for utility classes -- they are not ok elsewhere
+//  http://csswizardry.com/2016/05/the-importance-of-important/
+//
+//================================================================================================//
+
+// ELEMENTS
+
+.font-size-max {
+  @include font-size($font-size-max);
+}
+
+.font-size-xxl {
+  @include font-size($font-size-xxl);
+}
+
+.font-size-xl {
+  @include font-size($font-size-xl);
+}
+
+.font-size-lg {
+  @include font-size($font-size-lg);
+}
+
+.font-size-md {
+  @include font-size($font-size-md);
+}
+
+.font-size-sm {
+  @include font-size($font-size-sm);
+}
+
+.font-size-xs {
+  @include font-size($font-size-xs);
+}
+
+.font-size-xxs {
+  @include font-size($font-size-xxs);
+}
+
+.font-size-min {
+  @include font-size($font-size-min);
+}

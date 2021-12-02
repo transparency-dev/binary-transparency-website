@@ -1,0 +1,84 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//============================================================================//
+//
+// APP MAIN
+//
+//============================================================================//
+
+@import 'init';
+
+// GENERIC
+// First layer that produces any CSS. Very high-level, far reaching styles.
+// This layer is seldom modified, and is usually the same across any projects.
+// Normalize should always be the first inlude here. The styles outline here are
+// bare, unclassed HTML elements. This layer is the last one with element-based
+// selectors, and is very rarely added to or modified after initial setup.
+
+@import 'app/generic/normalize';
+@import 'app/generic/typography';
+@import 'app/generic/anchor';
+
+// STRUCTURE
+// This layer is concerned with styling non-cosmetic design patterns (objects).
+
+@import 'app/structure/stage';
+
+// COMPONENTS
+// This layer is where we begin to style recognisable pieces of UI. This layer
+// is more explicit than the last in that we are now styling explicit, designed
+// pieces of the DOM.
+
+@import 'app/component/access';
+@import 'app/component/button';
+@import 'app/component/not-supported';
+@import 'app/component/footer';
+@import 'app/component/header';
+@import 'app/component/wrap';
+@import 'app/component/card';
+@import 'app/component/menu';
+@import 'app/component/section';
+@import 'app/component/banner';
+@import 'app/component/overview';
+@import 'app/component/projects';
+@import 'app/component/cookie-notice';
+
+// SCOPES
+// Single class regions that effect internal classes and elements.
+
+// ANIMATIONS
+// Animate classes and keyframes
+@import 'app/animation/content';
+
+// THIRD PARTY & THIRD PARTY OVERRIDES
+
+// UTILITIES
+// This is the highest specificity layer - it includes the most explicit
+// types of rule, with the most narrow focus. Declarations in this layer can
+// carry !important.
+
+@import 'app/utility/a11y';
+@import 'app/utility/contain';
+@import 'app/utility/content';
+@import 'app/utility/clearfix';
+@import 'app/utility/display';
+@import 'app/utility/fontsize';
+@import 'app/utility/text';
+
+// WORKAROUNDS/FORCE
+// Force something in to be refactored later.
+
+@import 'app/workaround/workaround';

@@ -1,0 +1,486 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//================================================================================================//
+//
+//  INTRO COMPONENT
+//
+//================================================================================================//
+
+// VARS
+
+// ELEMENTS
+
+.section {}
+
+.section--intro {
+  padding: 0 0 100px 0;
+
+  @include media-min(sm) {
+    text-align: center;
+  }
+}
+
+.section--legal {
+  counter-reset: section;
+}
+
+.section--center {}
+
+.section--next {
+  @include media-min(sm) {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.section--split {
+  padding-top: 20px;
+
+  @include media-min(sm) {
+    padding-top: 30px;
+  }
+
+  @include media-min(md) {
+    padding-top: 60px;
+  }
+}
+
+.section--carousel {
+  @include media-min(md) {
+    padding-bottom: 75px;
+  }
+}
+
+.section__head {
+  .section--next & {
+    @include media-min(sm) {
+      padding-right: 40px;
+      width: 50%;
+    }
+  }
+}
+
+.section__title {
+  @include fs-section-title();
+  margin-bottom: 40px;
+  text-align: left;
+
+  .section--center & {
+    @include media-min(sm) {
+      text-align: center;
+    }
+  }
+
+  .section--next & {
+    margin-bottom: 20px;
+  }
+}
+
+.section__intro {
+  @include fs-section-content();
+  text-align: left;
+
+  @include media-min(sm) {
+    text-align: center;
+  }
+
+  .section--next & {
+    &:last-child {
+      padding-bottom: 40px;
+    }
+
+    @include media-min(sm) {
+      text-align: left;
+      max-width: 300px;
+    }
+  }
+}
+
+.section__intro--lg {
+  @include fs-section-intro-large();
+}
+
+.section__image-wrap {
+  margin-top: 40px;
+  padding: 0;
+  text-align: center;
+  pointer-events: none;
+
+  img {
+    max-width: 550px;
+    width: 100%;
+  }
+}
+
+.section__subtitle {
+  @include fs-section-subtitle();
+  margin-bottom: 40px;
+
+  .section--center & {
+    text-align: center;
+  }
+}
+
+.section__content {
+  @include fs-section-content();
+  color: color(text-dark);
+  line-height: 1.8;
+
+  h2 {
+    @include fs-section-content-h2();
+    margin: 80px 0 20px;
+  }
+
+  h3 {
+    @include fs-section-content-h3();
+    margin: 60px 0 20px;
+  }
+
+  h4 {
+    @include fs-section-content-h4();
+    margin: 40px 0 20px;
+  }
+
+  .section--center & {
+    text-align: center;
+  }
+
+  .section--next & {
+    @include fs-card-content();
+
+    a {
+      @include fs-card-title();
+    }
+
+    @include media-min(sm) {
+      width: 50%;
+    }
+
+    img {
+    }
+  }
+}
+
+.steps-list {
+  margin: 0;
+  padding: 0 0 0 60px;
+  list-style: none;
+  text-align: left;
+
+  @include media-min(sm) {
+    padding: 48px 0 0 60px;
+  }
+}
+
+.steps-list__item {
+  @include fs-section-content-small();
+  margin-bottom: 20px;
+  position: relative;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.step-trans,
+.step-cert,
+.step-slsa,
+.step-trillian,
+.step-github {
+  &::before {
+    position: absolute;
+    top: 10px;
+    left: -60px;
+    width: 40px;
+    height: 40px;
+    content: '';
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+  }
+}
+
+.step-trans::before {
+  background-image: url('/images/logo_transparency_dev.svg');
+  height: 60px;
+}
+
+.step-cert::before {
+  background-image: url('/images/logo_certificate_transp.png');
+}
+
+.step-slsa::before {
+  background-image: url('/images/logo_SLSA_hor.svg');
+}
+
+.step-trillian::before {
+  background-image: url('/images/logo_trilliant_ex.svg');
+  height: 60px;
+}
+
+.step-github::before {
+  background-image: url('/images/logo_github.svg');
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
+  position: relative;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.content--centered {
+
+}
+
+.content__body {
+  @include fs-content-area();
+  color: color(text-dark);
+  width: 100%;
+
+  @include media-min(sm) {
+    width: 50%;
+    padding-right: 20px;
+  }
+
+  @include media-min(md) {
+    width: 400px;
+  }
+
+  .content--centered & {
+    margin: 0 auto;
+
+    @include media-min(sm) {
+      text-align: center;
+      width: 100%;
+      padding: 0;
+    }
+
+    @include media-min(md) {
+      max-width: 700px;
+      width: 100%;
+    }
+  }
+}
+
+.content__title {
+  margin-bottom: 30px;
+  font-weight: $font-weight-regular;
+
+  .content--centered & {
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto 30px;
+  }
+}
+
+.content__title--backed {
+  @include fs-section-content-backed();
+  color: color(text-lightest);
+  background-color: color(seed-blue);
+  padding: 12px 20px;
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: 42px;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    content: '';
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 21px 10px 21px 10px;
+  }
+
+  &::before {
+    border-color: color(seed-blue) color(seed-blue) color(seed-blue) transparent;
+    left: -15px;
+  }
+
+  &::after {
+    border-color: color(seed-blue) transparent color(seed-blue) color(seed-blue);
+    right: -15px;
+  }
+}
+
+.content__image {
+  max-width: 600px;
+  width: 100%;
+
+  @include media-min(sm) {
+    width: calc(50% - 20px);
+
+    .content--centered & {
+      width: 100%;
+    }
+  }
+
+  @include media-min(md) {
+    width: calc(100% - 400px);
+
+    .content--centered & {
+      width: 100%;
+      max-width: 600px;
+    }
+  }
+}
+
+.content__image-wrap {
+  margin: 30px 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+
+  @include media-min(sm) {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 62px;
+    text-align: right;
+
+    .content--centered & {
+      position: relative;
+      margin: 0 auto;
+      text-align: center;
+      top: 20px;
+    }
+
+    .content--dependency & {
+      top: 0;
+    }
+  }
+}
+
+.content--credibility {
+  margin-bottom: 105px;
+
+  @include media-min(sm) {
+    margin-bottom: 150px;
+  }
+}
+
+.content--dependency {
+  margin-top: -25px;
+  min-height: 390px;
+}
+
+.content--confidence {
+}
+
+.seperator {
+  background-color: color(seed-blue);
+  width: 15px;
+  height: 15px;
+  margin-left: 55px;
+  position: relative;
+}
+
+.seperator--wide {
+  width: calc(50% - 63px);
+
+  &::before,
+  &::after {
+    background-color: color(seed-blue);
+    content: '';
+    display: block;
+    width: 15px;
+    height: 90px;
+    position: absolute;
+    box-sizing: border-box;
+    border-style: solid;
+    background-repeat: repeat-x;
+    background-size: 15px 15px;
+  }
+}
+
+.seperator--tall {
+  height: 90px;
+  transform: translateX(-100%);
+}
+
+.seperator--top {
+  margin: 90px 0 110px 55px;
+
+  @include media-min(sm) {
+    margin: 80px 0 110px 55px;
+  }
+
+  @include media-min(md) {
+    margin: 50px 0 110px 55px;
+  }
+
+  &::before {
+    top: 0;
+    left: -15px;
+    border-color: color(seed-white) transparent transparent transparent;
+    border-width: 15px 15px 0 0;
+    background-image: linear-gradient(180deg, color(seed-blue, -25) 0%, color(seed-blue) 100%);
+    background-position: 0 0;
+  }
+
+  &::after {
+    bottom: 0;
+    right: -15px;
+    border-color: transparent transparent color(seed-white) transparent;
+    border-width: 0 0 15px 15px;
+    background-image: linear-gradient(180deg, color(seed-blue) 0%, color(seed-blue, -25) 100%);
+    background-position: 0 100%;
+  }
+}
+
+.seperator--bottom {
+  background-image: linear-gradient(90deg, color(seed-blue, -25) 0%, color(seed-blue) 100%);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
+  margin: 0 0 85px 55px;
+
+  &::before {
+    bottom: 0;
+    left: -15px;
+    height: 90px;
+    border-color: transparent transparent color(seed-white) transparent;
+    border-width: 0 15px 15px 0;
+
+    @include media-min(sm) {
+      height: 130px;
+    }
+  }
+
+  &::after {
+    top: 0;
+    right: -15px;
+    height: 90px;
+    border-color: color(seed-white) transparent transparent transparent;
+    border-width: 15px 0 0 15px;
+    background-image: linear-gradient(180deg, color(seed-blue, -25) 0%, color(seed-blue) 100%);
+    background-position: 0 0;
+
+    @include media-min(sm) {
+      height: 105px;
+    }
+  }
+}

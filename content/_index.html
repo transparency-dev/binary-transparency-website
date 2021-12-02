@@ -1,0 +1,248 @@
+---
+
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+title: Binary Transparency
+description: Binary Transparency - Building Trust in the Software Supply Chain.
+---
+<section class="banner">
+  <div class="banner__inner">
+    <h1 class="banner__title">Building Trust in the Software Supply Chain</h1>
+    <div class="banner__video">
+      <button type="button" class="banner__trigger" data-analytics-track-event="" data-analytics-track-event-category="video" data-analytics-track-event-action="play" data-analytics-track-event-label="-LqrnvfETMI" data-banner-video="-LqrnvfETMI"><span class="sr-only">Start video</span><span class="banner__icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 180"><path d="M220 2H40C19.01 2 2 19.01 2 40v100c0 20.99 17.01 38 38 38h180c20.99 0 38-17.01 38-38V40c0-20.99-17.01-38-38-38zM102 130V50l68 40-68 40z"/></svg></span></button>
+    </div>
+  </div>
+</section>
+
+<section class="wrap wrap--darker wrap--offset" data-section="introduction">
+  <a class="wrap__anchor"></a>
+  <div class="wrap__inner contain-thin">
+    <div class="section section--center">
+      <div class="section__intro section__intro--lg">
+        <p>Software supply chains are increasingly vulnerable, with security measures such as digital signing not providing sufficient grounds for trust on their own.<p>
+        <p>To build greater confidence and trust, we can <strong>capture information</strong> about activity throughout the software production process, and create an immutable and <strong>tamper-evident record</strong> which can be viewed and <strong>verified by others</strong>.</p>
+        <p><strong>This is Binary Transparency.</strong></p>
+        <div class="section__image-wrap"><img src="/images/intro.svg" alt="" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" data-section="threats">
+  <a class="wrap__anchor" id="threats"></a>
+  <div class="wrap__inner">
+
+    <div class="section section--center contain-thin">
+      <h2 class="section__title">Threats in the Pipeline</h2>
+      <div class="section__intro">
+        <p>Binary Transparency can be used to mitigate many threats and risks within the pipelines used to produce software. The key element is the use of a <strong>verifiable data structure</strong>, such as a <a href="https://transparency.dev/" target="_blank" rel="noopener noreferer">tamper-evident log</a>, to store information about pipeline activity, which is then <strong>discoverable by others</strong>.</p>
+        <p>Access to this information can <strong>drive further processes</strong>: alerting people and systems to malicious behaviour, discouraging bad practice and insider exploits, and enabling validation of the integrity of software artifacts.</p>
+      </div>
+    </div>
+    <div class="section section--split contain">
+
+      <div class="seperator seperator--wide seperator--top"></div>
+
+      <div class="content">
+        <div class="content__body">
+          <h3 class="content__title">Confidence at Source</h3>
+          <p>Binaries are often built from publicly available source code, trusting that the repo offers the authoritative version. But what if someone with access to a repository added malicious code and created a new release, <strong>falsifying the release tag</strong> so that it appeared valid?</p>
+          <div class="content__image-wrap"><img src="/images/source.svg" alt="" class="content__image" /></div>
+          <p>Using a Binary Transparency model, a hash of the repo can be submitted to a tamper-evident log for every official release. This is exactly what the <a href="https://go.googlesource.com/proposal/+/master/design/25530-sumdb.md" target="_blank" rel="noopener noreferer">golang project does with sumdb</a> -  tagged releases are signed into the log and can be <strong>checked for authenticity</strong>.</p>
+          <p>Any attempt to falsify the release tag is now <strong>discoverable</strong> through comparison with the relevant log entry.</p>
+        </div>
+      </div>
+
+      <div class="seperator seperator--tall"></div>
+
+      <div class="content">
+        <h3 class="content__title">Hidden Vulnerabilities</h3>
+        <div class="content__body">
+          <p>Modern software relies heavily on dependencies, and this has been a common attack vector for exploits in recent years.  What if a rogue developer takes ownership of the source repository of a <strong>dependency</strong> in order to introduce a backdoor?</p>
+          <div class="content__image-wrap"><img src="/images/hidden.svg" alt="" class="content__image" /></div>
+          <p>A possible Binary Transparency response would require a third party to check for known vulnerabilities in the package’s dependencies and <strong>record this assurance</strong>, within a tamper-evident log.</p>
+          <p>Now that this information is discoverable, anyone relying on this dependency could check the log for these assertions, and the existence of a public record will <strong>actively discourage</strong> attempted hijacks.</p>
+        </div>
+      </div>
+
+      <div class="seperator seperator--tall"></div>
+
+      <div class="content">
+        <h3 class="content__title">Trusting Dependencies</h3>
+        <div class="content__body">
+          <p>If the dependency is itself a binary which is packaged and distributed as part of an application, how could a developer be confident that this hasn’t <strong>been tampered with</strong>?</p>
+          <div class="content__image-wrap"><img src="/images/dependencies.svg" alt="" class="content__image" /></div>
+          <p>The producer of the library uses a <strong>Binary Transparency strategy</strong> to maintain their own tamper-evident records of code reviews, together with confirmation of build reproducibility by trusted third parties for each release.</p>
+          <p>During the build process, the provenance of the library is checked using the hash of the binary, and the build continues successfully only if these <strong>quality assurance attestations</strong> are discoverable.</p>
+        </div>
+      </div>
+
+      <div class="seperator seperator--tall"></div>
+
+      <div class="content">
+        <h3 class="content__title">Build System Integrity</h3>
+        <div class="content__body">
+          <p>Software used to automate the build process is another source of vulnerability.  A hacker could introduce malicious code into a pipeline prior to building a release, by manually patching the code, or <strong>modifying the pipeline software</strong> itself to insert malicious code at build time.</p>
+          <div class="content__image-wrap"><img src="/images/integrity.svg" alt="" class="content__image" /></div>
+          <p>Using Binary Transparency it is possible to discover that this is happening before relying on a build.  The developer submits details of their build to a tamper-evident log, which is used by third parties to <strong>confirm build reproducibility</strong> using the same pipeline.</p>
+          <p>Failure to reproduce the build would ring alarm bells and allow such a compromise to be <strong>brought to light</strong> in good time.</p>
+        </div>
+      </div>
+
+      <div class="seperator seperator--tall"></div>
+
+      <div class="content content--credibility">
+        <h3 class="content__title">Detecting Key Misuse</h3>
+        <div class="content__body">
+          <p>Digital signatures are assumed to show the <strong>identity</strong> of the software producer, but is it possible to be more confident that the keys for signing have not been stolen?</p>
+          <div class="content__image-wrap"><img src="/images/authenticity.svg" alt="" class="content__image" /></div>
+          <p>Within a Binary Transparency framework, the event of signing would be committed to a tamper-evident log.  Trust in the signed binary is now dependent on the signature as well as the <strong>verifiable log entry</strong>.</p>
+          <p>To distribute illicitly signed software, a bad actor now needs to publicly log the signing of the illicit release, as well as stealing the key.  An insider exploit which manages to write the new signing into the log could be detected by the software producer <strong>monitoring the log</strong> for unexpected signing events.</p>
+        </div>
+      </div>
+
+      <div class="seperator seperator--wide seperator--bottom"></div>
+
+      <div class="content content--centered content--confidence">
+        <h3 class="content__title content__title--backed">Confidence on Device</h3>
+        <div class="content__body">
+          <p>With activity from  the software supply chain cryptographically logged, it is now possible for devices to enforce a policy <strong>prior to execution</strong>.</p>
+          <p>For example, before installing a new firmware image or executing an application the device can ensure that these checks above <strong>have taken place</strong>.</p>
+          <p>Binary Transparency replaces blind faith with a <strong>verifiable record</strong> that can be used to confirm the activities that have resulted in the software being deployed, providing a firm foundation for trust.</p>
+          <div class="content__image-wrap"><img src="/images/device.svg" alt="" class="content__image" /></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="wrap wrap--darker" data-section="responses">
+  <a class="wrap__anchor" id="responses"></a>
+  <div class="wrap__inner contain">
+
+    <div class="section section--center section--carousel">
+      <h2 class="section__title">Real World Responses</h2>
+      <div class="section__intro contain-thin">
+        <p>Binary Transparency is already being adopted by technology companies to bring greater levels of confidence and more robust assurance to their software distributions.</p>
+      </div>
+
+      <div class="projects" data-slider="">
+
+        <div class="projects__window">
+          <div class="projects__tray" id="projects-slider" data-slider-tray="">
+
+            <a data-external-link="" href="https://github.com/f-secure-foundry/armory-drive/wiki/Firmware-Transparency" target="_blank" rel="noopener noreferer" class="project" role="group" data-slider-slide="1">
+              <div class="project__inner">
+                <div class="project__logo"><img src="/images/logo_f-secure_hor.svg" alt="F-Secure" /></div>
+                <div class="project__content">
+                  <h3><span>F-Secure</span></h3>
+                  <p>An example of Firmware Transparency, using a serverless transparency log to protect the firmware stack for F-Secure Armory Drive.</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="https://go.googlesource.com/proposal/+/master/design/25530-sumdb.md" target="_blank" rel="noopener noreferer" class="project" role="group" data-slider-slide="2">
+              <div class="project__inner">
+                <div class="project__logo"><img src="/images/logo_golang_hor.svg" alt="Go" title="Go" /></div>
+                <div class="project__content">
+                  <h3><span>Go</span></h3>
+                  <p>Golang uses Binary Transparency to Secure the public Go module ecosystem.</p>
+                </div>
+              </div>
+            </a>
+
+            <a data-external-link="" href="https://www.sigstore.dev" target="_blank" rel="noopener noreferer" class="project" role="group" data-slider-slide="3">
+              <div class="project__inner">
+                <div class="project__logo"><img src="/images/logo_sigstore_hor.svg" alt="sigstore" title="sigstore" /></div>
+                <div class="project__content">
+                  <h3><span>sigstore</span></h3>
+                  <p>Services and tools for developers to securely sign software artifacts, backed up by a tamper-resistant public log.</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="https://www.system-transparency.org/" target="_blank" rel="noopener noreferer" class="project" role="group" data-slider-slide="4">
+              <div class="project__inner">
+                <div class="project__logo"><img src="/images/logo_system_transp_hor.svg" alt="System Transparency" /></div>
+                <div class="project__content">
+                  <h3><span>System Transparency</span></h3>
+                  <p>A security architecture for bare-metal servers, which incorporates Binary Transparency.</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="https://developers.google.com/android/binary_transparency" target="_blank" rel="noopener noreferer" class="project" role="group" data-slider-slide="5">
+              <div class="project__inner">
+                <div class="project__logo"><img src="/images/logo_android.png" alt="Google Pixel" /></div>
+                <div class="project__content">
+                  <h3><span>Google Pixel</span></h3>
+                  <p>Transparency is instrumental in building user trust in the security of our products.</p>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+        <div class="projects__controls">
+          <button type="button" aria-controls="projects-slider" data-slider-prev="" aria-label="Next slide" class="projects__button projects__button--prev"></button>
+          <ul class="projects__indicators">
+            <li><button data-slider-indicator="1" class="projects__indicator" aria-controls="projects-slider" aria-label="Go to slide 1"><span class="sr-only">Slide 1</span></button></li>
+            <li><button data-slider-indicator="2" class="projects__indicator" aria-controls="projects-slider" aria-label="Go to slide 2"><span class="sr-only">Slide 2</span></button></li>
+            <li><button data-slider-indicator="3" class="projects__indicator" aria-controls="projects-slider" aria-label="Go to slide 3"><span class="sr-only">Slide 3</span></button></li>
+            <li><button data-slider-indicator="4" class="projects__indicator" aria-controls="projects-slider" aria-label="Go to slide 4"><span class="sr-only">Slide 4</span></button></li>
+            <li><button data-slider-indicator="5" class="projects__indicator" aria-controls="projects-slider" aria-label="Go to slide 5"><span class="sr-only">Slide 5</span></button></li>
+          </ul>
+          <button type="button" aria-controls="projects-slider" data-slider-next="" aria-label="Previous slide" class="projects__button projects__button--next"></button>
+          <button type="button" aria-controls="projects-slider" data-slider-restart="" aria-label="Restart carousel" class="projects__restart"></button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="wrap" data-section="get-involved">
+  <a class="wrap__anchor" id="get-involved"></a>
+  <div class="wrap__inner contain">
+
+    <div class="section section--next contain">
+      <div class="section__head">
+        <h2 class="section__title">Next Steps</h2>
+        <p class="section__intro">Any software producer can apply the principles of Binary Transparency to identify and target vulnerabilities within their existing pipelines, avoiding the need for extensive re-engineering.</p>
+        <p class="section__intro">Here are some <strong>further resources</strong> for finding out more about implementing Binary Transparency within your software supply chain.</p>
+      </div>
+      <div class="section__content">
+        <ul class="steps-list">
+          <li class="steps-list__item step-trans"><h3><a data-external-link="" href="https://transparency.dev/" target="_blank" rel="noopener noreferer"><span>transparency.dev</span></a></h3>
+          <p>Learn more about the general concepts of transparency and how to design verifiable systems.</p></li>
+
+          <li class="steps-list__item step-cert"><h3><a data-external-link="" href="https://certificate.transparency.dev/" target="_blank" rel="noopener noreferer"><span>Certificate Transparency</span></a></h3>
+          <p>How tamper-evident logs having been helping secure the certificate supply chain.</p></li>
+
+          <li class="steps-list__item step-slsa"><h3><a data-external-link="" href="https://slsa.dev" target="_blank" rel="noopener noreferer"><span>SLSA</span></a></h3>
+          <p>A framework for identifying and managing threats and risks within the supply chain which incorporates Binary Transparency concepts.</p></li>
+
+          <li class="steps-list__item step-github"><h3><a data-external-link="" href="https://github.com/google/trillian-examples/tree/master/binary_transparency/firmware" target="_blank" rel="noopener noreferer"><span>Firmware Transparency Demo</span></a></h3>
+          <p>Code examples on GitHub for how to apply transparency patterns to the problem of firmware updates.</p></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+

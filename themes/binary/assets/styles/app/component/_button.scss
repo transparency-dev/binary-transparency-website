@@ -1,0 +1,397 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//================================================================================================//
+//
+//  BUTTON COMPONENT
+//
+//================================================================================================//
+
+// VARS
+
+$btn-opacity-disabled: .5 !default;
+
+$btn-default-bg: color(seed-grey-lightest) !default;
+$btn-default-bg-focus: color(seed-grey-lightest) !default;
+$btn-default-bg-active: color(seed-grey-lightest) !default;
+$btn-default-bg-disabled: color(seed-grey-lightest) !default;
+
+$btn-default-drop-bg: color(seed-black, null, 0) !default;
+$btn-default-drop-bg-focus: color(seed-black, null, .1) !default;
+$btn-default-drop-bg-active: color(seed-black, null, .25) !default;
+$btn-default-drop-bg-disabled: color(seed-black, null, 0) !default;
+
+$btn-default-label: color(seed-white) !default;
+$btn-default-label-focus: color(seed-white) !default;
+$btn-default-label-active: color(seed-white) !default;
+$btn-default-label-disabled: color(seed-grey, 50) !default;
+
+$btn-primary-bg: color(seed-blue) !default;
+$btn-primary-label: color(seed-white) !default;
+$btn-primary-label-focus: color(seed-white) !default;
+$btn-primary-label-active: color(seed-grey, 50) !default;
+
+$btn-ghost-bg: color(seed-white, null, 0) !default;
+$btn-ghost-label: color(seed-blue) !default;
+$btn-ghost-label-focus: color(seed-blue, -25) !default;
+$btn-ghost-label-active: color(text-darkest) !default;
+
+$btn-group-radius: 5px !default;
+
+$btn-svg-shadow-1: 0 1px 2px color(seed-black, null, .5) !default;
+
+// CONTAINERS
+
+.button-group {
+  display: flex;
+
+  .button {
+    margin: 0;
+  }
+}
+
+.button-group--vert {
+  flex-direction: column;
+}
+
+.button-group__item {
+  display: flex-inline;
+
+  &:first-child {
+    border-radius: #{$btn-group-radius}px 0 0 #{$btn-group-radius}px;
+  }
+
+  &:last-child {
+    border-radius: 0 #{$btn-group-radius}px #{$btn-group-radius}px 0;
+  }
+
+  .btn-group--vert & {
+    &:first-child {
+      border-radius: #{$btn-group-radius}px #{$btn-group-radius}px 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 #{$btn-group-radius}px #{$btn-group-radius}px;
+    }
+  }
+}
+
+// ELEMENT
+
+.button {
+  @include animate(background-color, opacity);
+  position: relative;
+  border: 0;
+  cursor: pointer;
+  margin-right: 10px;
+  display: inline-flex;
+  flex-direction: row;
+  padding: 0;
+  text-align: center;
+  align-items: flex-start;
+  justify-content: stretch;
+  vertical-align: middle;
+  opacity: 1;
+  background-color: $btn-default-bg;
+  overflow: hidden;
+
+  &:link,
+  &:visited {
+    background-color: $btn-default-bg;
+    outline: none;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: 1px dotted $color-focus-border;
+  }
+
+  &.is-active,
+  &:focus,
+  &:hover {
+    background-color: $btn-default-bg-focus;
+  }
+
+  &:active {
+    background-color: $btn-default-bg-active;
+  }
+
+  &.is-disabled,
+  &:disabled,
+  &[disabled] {
+    background-color: $btn-default-bg-disabled;
+    opacity: $btn-opacity-disabled;
+    pointer-events: none;
+    cursor: not-allowed;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      background-color: $btn-default-bg-disabled;
+    }
+  }
+
+  &.is-loading {
+    pointer-events: none;
+
+    &:hover,
+    &:active {
+      cursor: default;
+    }
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.button--primary {
+  background-color: $btn-primary-bg;
+
+  &:link,
+  &:visited {
+    background-color: $btn-primary-bg;
+  }
+
+  &.is-active,
+  &:focus,
+  &:hover {
+    background-color: $btn-primary-bg;
+  }
+
+  &:active {
+    background-color: $btn-primary-bg;
+  }
+}
+
+.button--ghost {
+  background-color: transparent;
+
+  &:link,
+  &:visited {
+    background-color: transparent;
+  }
+
+  &.is-active,
+  &:focus,
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+}
+
+.button__drop {
+  @include animate(background-color);
+  display: flex;
+  flex-direction: row;
+  padding: 12px 15px;
+  background-color: $btn-default-drop-bg;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  .button:hover &,
+  .button:visited &,
+  .button:focus & {
+    background-color: $btn-default-drop-bg-focus;
+  }
+
+  .button:active & {
+    background-color: $btn-default-drop-bg-active;
+  }
+
+  .button:disabled &,
+  .button.is-disabled &,
+  .button[disabled] & {
+    background-color: $btn-default-drop-bg-disabled;
+  }
+}
+
+.button__label {
+  @include animate(color opacity);
+  @include font-size-md();
+  font-weight: $font-weight-heavy;
+  color: $btn-default-label;
+  text-align: center;
+  line-height: 1;
+  text-shadow: $text-shadow-1;
+
+  .button.is-loading & {
+    opacity: 0;
+  }
+
+  .button__icon + & {
+    margin-left: 5px;
+  }
+
+  .button &,
+  .button:link &,
+  .button:visited & {
+    color: $btn-default-label;
+  }
+
+  .button:hover &,
+  .button:visited &,
+  .button:focus & {
+    color: $btn-default-label-focus;
+  }
+
+  .button:active & {
+    color: $btn-default-label-active;
+  }
+
+  .button.is-disabled &,
+  .button:disabled &,
+  .button[disabled] & {
+    color: $btn-default-label-disabled;
+    text-shadow: none;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      color: $btn-default-label-disabled;
+      text-shadow: none;
+    }
+  }
+
+  .button--primary &,
+  .button--primary:link &,
+  .button--primary:visited & {
+    color: $btn-primary-label;
+  }
+
+  .button--primary.is-active &,
+  .button--primary:focus &,
+  .button--primary:hover & {
+    color: $btn-primary-label-focus;
+  }
+
+  .button--primary:active & {
+    color: $btn-primary-label-active;
+  }
+
+  .button--ghost &,
+  .button--ghost:link &,
+  .button--ghost:visited & {
+    @include animate(color opacity text-shadow);
+    color: $btn-ghost-label;
+    text-shadow: $text-shadow-0;
+  }
+
+  .button--ghost.is-active &,
+  .button--ghost:focus &,
+  .button--ghost:hover & {
+    color: $btn-ghost-label-focus;
+    text-shadow: $text-shadow-0;
+  }
+
+  .button--ghost:active & {
+    color: $btn-ghost-label-active;
+    text-shadow: $text-shadow-0;
+  }
+}
+
+.button__icon {
+  @include animate(opacity);
+  fill: $btn-default-label;
+  height: #{$btn-icon-md}px;
+  width: #{$btn-icon-md}px;
+  min-width: 0;
+  opacity: 1;
+
+  svg {
+    filter: drop-shadow($btn-svg-shadow-1);
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  .button &,
+  .button:link &,
+  .button:visited & {
+    fill: $btn-default-label;
+  }
+
+  .button:hover &,
+  .button:visited &,
+  .button:focus & {
+    fill: $btn-default-label-focus;
+  }
+
+  .button:active & {
+    fill: $btn-default-label-active;
+  }
+
+  .button.is-disabled &,
+  .button:disabled &,
+  .button[disabled] & {
+    fill: $btn-default-label-disabled;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      fill: $btn-default-label-disabled;
+    }
+  }
+
+  .button--primary &,
+  .button--primary:link &,
+  .button--primary:visited & {
+    fill: $btn-primary-label;
+  }
+
+  .button--primary.is-active &,
+  .button--primary:focus &,
+  .button--primary:hover & {
+    fill: $btn-primary-label-focus;
+  }
+
+  .button--primary:active & {
+    fill: $btn-primary-label-active;
+  }
+
+  .button--ghost &,
+  .button--ghost:link &,
+  .button--ghost:visited & {
+    fill: $btn-ghost-label;
+
+    svg {
+      filter: none;
+    }
+  }
+
+  .button--ghost.is-active &,
+  .button--ghost:focus &,
+  .button--ghost:hover & {
+    fill: $btn-ghost-label-focus;
+  }
+
+  .button--ghost:active & {
+    fill: $btn-ghost-label-active;
+  }
+
+  .button__label + & {
+    margin-left: 5px;
+  }
+}

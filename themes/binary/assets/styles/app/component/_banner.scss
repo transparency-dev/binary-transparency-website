@@ -1,0 +1,112 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//================================================================================================//
+//
+//  BANNER COMPONENT
+//
+//================================================================================================//
+
+// ELEMENTS
+
+.banner {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 100px 15px 0 15px;
+  padding-top: 100px;
+  z-index: 2;
+
+  @include media-min(sm) {
+    padding: 150px 15px 0 15px;
+  }
+}
+
+.banner__title {
+  @include media-min(sm) {
+    text-align: center;
+  }
+}
+
+.banner__trigger {
+  @include animate(opacity);
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  opacity: 1;
+  background-image: url('/images/header.jpg');
+  background-size: cover;
+  background-position: 50% 50%;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  &.fade-out {
+    opacity: 0;
+  }
+}
+
+.banner__video {
+  margin: 40px auto 0;
+  max-width: 904px;
+  position: relative;
+
+  &::before {
+    padding-top: 56.25%;
+    width: 100%;
+    display: block;
+    content: '';
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-width: 0;
+    border-style: none;
+  }
+}
+
+.banner__icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 58px;
+  width: 83px;
+
+  svg {
+    @include animate(fill);
+    fill: color(text-darkest);
+
+    .banner__trigger:hover &,
+    .banner__trigger:focus & {
+      fill: color(youtube-red);
+    }
+  }
+
+  .no-js & {
+    display: none;
+  }
+}

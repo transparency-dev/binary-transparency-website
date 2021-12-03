@@ -1,0 +1,46 @@
+{{/*
+  Copyright 2021 Google LLC
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/}}
+{{ $js := resources.Get "built/js/main.min.js" | fingerprint }}
+{{ $vendor := resources.Get "built/js/vendor.min.js" | fingerprint }}
+{{ if $js }}
+<script type="text/javascript" src='{{ $js.Permalink }}' integrity="{{ $js.Data.Integrity }}"></script>
+{{ end }}
+{{ if $vendor }}
+<script type="text/javascript" src='{{ $vendor.Permalink }}' integrity="{{ $vendor.Data.Integrity }}"></script>
+{{ end }}
+<!-- JS NOT SUPPORTED -->
+<noscript>
+  <div class="not-supported">
+    <p><strong>This site requires JavaScript</strong></p>
+  </div>
+</noscript>
+
+<!--[if lte IE 9]>
+<div class="not-supported">
+  <p>Your browser is outdated and may not display all features of this site.</p>
+</div>
+<![endif]-->
+
+<div class="not-supported not-supported--browser">
+  <p>Your browser is outdated and may not display all features of this site.</p>
+</div>
+
+{{- if eq hugo.Environment "development" -}}
+<script>document.write('<script src="http://'
+  + (location.host || 'localhost').split(':')[0]
+	+ ':1313/livereload.js?mindelay=10"></'
+  + 'script>')</script>
+{{- end -}}

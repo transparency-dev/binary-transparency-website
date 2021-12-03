@@ -1,0 +1,123 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//-----------------------------------------------------------------//
+//
+//  MEDIAQUERY TOOLS
+//  N.B: Only mixins here NEVER anything that outputs CSS directly
+//
+//-----------------------------------------------------------------//
+
+// VARS
+
+$max-offset: .01;
+
+$media-sizes: (
+  xxs: 320,
+  xs: 540,
+  sm: 768,
+  md: 992,
+  lg: 1200,
+  xl: 1600,
+  xxl: 1920
+);
+
+@function get-media($q) {
+  $x: 0;
+
+  @if (type_of($q) == number) {
+    $x: abs($q);
+  }
+
+  @else {
+    @if map-has-key($media-sizes, $q) {
+      $x: map-get($media-sizes, $q);
+    }
+  }
+
+  @if ($x > 0) {
+    @return $x;
+  }
+
+  @else {
+    @warn "Media value `#{$q}` caused a problem.";
+    @return null;
+  }
+}
+
+// MIXINS
+
+@mixin media-min($q) {
+  $x: get-media($q);
+
+  @if ($x > 0) {
+    @media only screen and (min-width: #{$x}px) {
+      @content;
+    }
+  }
+}
+
+@mixin media-max($q) {
+  $x: get-media($q);
+
+  @if ($x > 0) {
+    @media only screen and (max-width: #{$x - $max-offset}px) {
+      @content;
+    }
+  }
+}
+
+@mixin media-between($q1, $q2) {
+  $t1: get-media($q1);
+  $t2: get-media($q2);
+
+  $x: 0;
+  $y: 0;
+
+  @if ($t1 < $t2) {
+    $x: $t1;
+    $y: $t2;
+  }
+  @else {
+    $x: $t2;
+    $y: $t1;
+  }
+
+  @if ($x > 0 & $y > $x) {
+    @media only screen and (min-width: #{$x}px) and (max-width: #{$y - $max-offset}px) {
+      @content;
+    }
+  }
+}
+
+/* stylelint-disable media-feature-name-no-unknown */
+@mixin media-retina {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}
+/* stylelint-enable media-feature-name-no-unknown */
+
+@mixin media-print {
+  @media print {
+    @content;
+  }
+}

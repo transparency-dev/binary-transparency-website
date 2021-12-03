@@ -1,0 +1,382 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//================================================================================================//
+//
+//  PROJECTS COMPONENT
+//
+//================================================================================================//
+
+// VARS
+
+// ELEMENTS
+
+.projects {
+  position: relative;
+  margin-top: 40px;
+
+  @include media-min(sm) {
+    padding-bottom: 0;
+  }
+}
+
+.projects__tray {
+  @include animate(transform);
+  display: flex;
+  flex-direction: row;
+  transform: translateX(0);
+
+  .no-js & {
+    flex-direction: column;
+  }
+}
+
+.projects__window {
+  max-width: 770px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.projects__controls {
+  padding: 20px 0 45px;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  @include media-min(md) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    padding: 0;
+  }
+
+  .no-js & {
+    display: none;
+  }
+}
+
+.projects__button {
+  @include animate(background-color);
+  position: relative;
+  background-color: color(button-back);
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  pointer-events: all;
+
+  @include media-min(md) {
+    position: absolute;
+    transform: translateY(-50%);
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    top: 50%;
+    z-index: 10;
+  }
+
+  &::before {
+    @include animate(border-color);
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-style: solid;
+    border-width: 3px 3px 0 0;
+    border-color: color(button-icon) color(button-icon) transparent transparent;
+    content: '';
+    display: block;
+    top: 50%;
+    left: 50%;
+
+    @include media-min(md) {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: color(button-back, -10);
+
+    &::before {
+      border-color: color(button-icon, -25);
+    }
+  }
+}
+
+.projects__button--next {
+  right: 0;
+  margin-left: 15px;
+
+  &::before {
+    transform: translate(-6px, -50%) rotate(45deg);
+
+    @include media-min(md) {
+      transform: translate(-10px, -50%) rotate(45deg);
+    }
+  }
+
+  @include media-min(md) {
+    margin-left: 0;
+  }
+}
+
+.projects__button--prev {
+  left: 0;
+  margin-right: 15px;
+
+  &::before {
+    transform: translate(-3px, -50%) rotate(225deg);
+
+    @include media-min(md) {
+      transform: translate(-4px, -50%) rotate(225deg);
+    }
+  }
+
+  @include media-min(md) {
+    margin-right: 0;
+  }
+}
+
+.project {
+  @include animate(opacity);
+  flex: 0 0 auto;
+  padding: 10px;
+  opacity: .2;
+  pointer-events: none;
+  text-decoration: none;
+
+  &.is-active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .no-js & {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  + .project {
+    .no-js & {
+      padding-top: 40px;
+    }
+  }
+}
+
+.project__inner {
+  background-color: color(seed-white);
+  box-shadow: 3px 3px 3px color(seed-black, null, .1);
+  padding: 40px 20px;
+  border-width: 0 0 0 5px;
+  border-style: solid;
+  border-color: color(seed-grey);
+
+  .project:nth-child(4n + 1) & {
+    border-color: color(card-red);
+  }
+
+  .project:nth-child(4n + 2) & {
+    border-color: color(card-yellow);
+  }
+
+  .project:nth-child(4n + 3) & {
+    border-color: color(card-green);
+  }
+
+  .project:nth-child(4n + 4) & {
+    border-color: color(card-blue);
+  }
+
+  @include media-min(sm) {
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+  }
+}
+
+.project__logo {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 200px;
+  height: auto;
+  width: auto;
+  max-height: 80px;
+  margin-bottom: 20px;
+
+  a {
+    display: block;
+    width: 100%;
+  }
+
+  img {
+    max-height: 80px;
+    width: auto;
+    max-width: 100%;
+  }
+
+  @include media-min(sm) {
+    min-width: 45%;
+    margin: 0 20px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.project__content {
+  @include fs-section-content-small();
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+
+  p {
+    color: color(text-dark);
+  }
+
+  h3 {
+    @include fs-card-title();
+    color: color(seed-blue);
+    margin: 0 0 2px 0;
+  }
+}
+
+.projects__indicators {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+
+  @include media-min(md) {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  li {
+    padding: 7px;
+    margin: 0;
+    display: inline-block;
+  }
+
+  .no-js & {
+    display: none;
+  }
+}
+
+.projects__indicator {
+  @include animate(background-color transform);
+  display: block;
+  background-color: color(button-back);
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  pointer-events: all;
+
+  &:hover {
+    transform: scale(1.25);
+    background-color: color(button-back, -15, 1);
+  }
+
+  &.is-active {
+    transform: scale(1.25);
+    background-color: color(button-icon);
+
+    &:hover {
+      transform: scale(1.5);
+      background-color: color(button-icon, -15, 1);
+    }
+  }
+}
+
+.projects__restart {
+  @include animate(border-color transform);
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+  z-index: 5;
+  pointer-events: all;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid color(button-back);
+  border-radius: 50%;
+
+  @include media-min(md) {
+    bottom: -85px;
+  }
+
+  &::before,
+  &::after {
+    @include animate(border-color);
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    content: '';
+    border-style: solid;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%);
+    border-width: 0 3px;
+    border-color: transparent color(button-icon);
+    width: 10px;
+    height: 12px;
+  }
+
+  &::after {
+    transform: translate(-45%, -50%);
+    width: 10px;
+    height: 10px;
+    border-width: 5px 0 5px 10px;
+    border-color: transparent transparent transparent color(button-icon);
+    opacity: 0;
+  }
+
+  &:hover {
+    border: 2px solid color(button-icon);
+
+    &::before {
+      border-color: transparent color(button-icon, -25) transparent color(button-icon, -25);
+    }
+
+    &::after {
+      border-color: transparent transparent transparent color(button-icon, -25);
+    }
+  }
+
+  &.is-active {
+    &::after {
+      opacity: 1;
+    }
+
+    &::before {
+      opacity: 0;
+    }
+  }
+}

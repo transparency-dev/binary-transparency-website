@@ -1,0 +1,63 @@
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# See https://git-scm.com/docs/gitignore for more about ignoring files.
+
+# Temp files
+*.tmp
+*.log*
+.sass-cache
+/coverage/*
+/stats/*
+
+# Secrets
+# Any client secret files (such as `service-cloud-account.json` or `cloud-service-creds.json` etc) should also be added to this list as needed.
+
+# Python virtualenv (name is specified when creating the env)
+/virtualenv
+/venv
+
+# Package managers
+/node_modules
+.package-lock.json
+/vendor
+
+# IDEs and editors
+/.idea
+.project
+.pydevproject
+.classpath
+.c9/
+*.launch
+.settings/
+.vscode/*
+
+# Compiled files
+*.pyc
+/resources/*
+/themes/binary/assets/built/*
+/public
+
+# Misc
+connect.lock
+/typings
+*.psd
+*.exe
+*.dll
+*.lib
+*.bin
+
+# OS Files
+.DS_Store
+Thumbs.db

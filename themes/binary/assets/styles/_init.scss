@@ -1,0 +1,51 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//============================================================================//
+//
+//  COMPONENT INIT
+//  CONTAINS STANDARD VARS, FUNCTIONS AND MIXINS (NOTHING THAT OUTPUTS CSS)
+//
+//============================================================================//
+
+// FUNCTIONS
+
+@import 'app/mixin/calculations';
+@import 'app/mixin/color';
+
+// VARIABLES
+// Global settings for your project
+
+@import 'app/colors';
+@import 'app/variables';
+
+// MIXINS
+// The mixins layer comes after the Settings layer because a mixin may require
+// one of the global settings as a default parameter.
+
+@import 'app/mixin/animations';
+@import 'app/mixin/clearing';
+@import 'app/mixin/fonts';
+@import 'app/mixin/fontsizes';
+@import 'app/mixin/grids';
+@import 'app/mixin/mediaqueries';
+@import 'app/mixin/modes';
+@import 'app/mixin/input';
+@import 'app/mixin/placeholder';
+@import 'app/mixin/text';
+
+// FONTSTACK
+
+@import 'app/fontstack';

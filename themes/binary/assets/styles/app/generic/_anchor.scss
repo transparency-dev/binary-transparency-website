@@ -1,0 +1,69 @@
+/**
+ * Copyright 2021 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+//============================================================================//
+//
+//  GLOBAL ANCHOR
+//  N.B: DON'T modify only fix issues and fold back into typography module
+//
+//============================================================================//
+
+// VARS
+
+$anchor:                          color(seed-blue) !default;
+$anchor-background:               color(seed-black, null, 0) !default;
+$anchor-hover:                    color(seed-blue, 25) !default;
+$anchor-active:                   color(seed-red) !default;
+$anchor-tap:                      color(seed-black) !default;
+$anchor-access-border:            color(seed-green) !default;
+$anchor-focus-border:             color(seed-orange) !default;
+
+// ELEMENTS
+
+a {
+  @include animate(color background-color outline);
+  background-color: $anchor-background;
+  text-decoration-skip-ink: auto;
+  color: $anchor;
+  text-decoration: underline;
+
+  &:link,
+  &:visited {
+    color: $anchor;
+    background-color: $anchor-background;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $anchor-hover;
+    outline: 0;
+
+    &[accesskey] {
+      outline: 1px dotted $anchor-access-border;
+    }
+  }
+
+  &:focus {
+    outline: 2px solid $anchor-focus-border;
+    color: $anchor-active;
+  }
+
+  .focus-disabled &:focus,
+  &:active {
+    color: $anchor-active;
+    background-color: transparent;
+    outline: none;
+  }
+}

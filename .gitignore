@@ -30,7 +30,6 @@
 
 # Package managers
 /node_modules
-.package-lock.json
 /vendor
 
 # IDEs and editors

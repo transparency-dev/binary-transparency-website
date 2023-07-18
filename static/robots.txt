@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /
-
-Sitemap: http://binary.transparency.dev/sitemap.xml

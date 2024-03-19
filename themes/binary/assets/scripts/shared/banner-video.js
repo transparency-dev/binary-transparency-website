@@ -40,8 +40,7 @@ export default class BannerVideo {
       frame.frameborder = 'none';
       frame.src = 'https://www.youtube.com/embed/' + this._element.getAttribute(this._ident) + '?&autoplay=1&rel=0';
       frame.title = '';
-      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-      frame.allowfullscreen = 'allowfullscreen';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
 
       this._element.parentNode.prepend(frame);
 

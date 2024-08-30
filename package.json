@@ -23,7 +23,7 @@
     "postcss-purgecss": "^5.0.0",
     "rimraf": "^3.0.2",
     "terser-webpack-plugin": "^4.2.0",
-    "webpack": "^5.76.0",
+    "webpack": "^5.94.0",
     "webpack-cli": "^4.8.0"
   }
 }
